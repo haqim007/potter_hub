@@ -6,7 +6,7 @@ import 'package:potter_hub/features/list/domain/characters_repository.dart';
 import '../data/characters_repository_impl.dart';
 import '../data/remote/characters_service.dart';
 
-void configureDependencies(){
+void configureListDependencies(){
   Get.put(CharactersService(Dio()), permanent: true);
   Get.put(CharactersRemoteSource(service: Get.find()));
 

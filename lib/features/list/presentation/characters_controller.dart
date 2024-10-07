@@ -41,7 +41,7 @@ class CharactersController extends GetxController {
   }
 
   void fetchCharacters() {
-    _getCharactersUseCase.getCharacters().listen((event) {
+    _getCharactersUseCase.invoke().listen((event) {
       characters.value = event;
       _charactersData = event.data ?? [];
     });

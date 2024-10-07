@@ -35,7 +35,7 @@ abstract class NetworkBoundResource<ResultType, ResponseType> {
           if (excCustomThrowable != null) {
             await onFailed(excCustomThrowable);
             _result.value = Resource.error(
-              message: excCustomThrowable.message ?? "Failed to fetch data",
+              message: excCustomThrowable.message,
               data: null, // TODO: Load error data from response if there any
               httpCode: excCustomThrowable.code,
             );

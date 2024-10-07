@@ -16,7 +16,7 @@ class SearchField extends StatelessWidget {
         },
         decoration: InputDecoration(
           filled: true,
-          hintStyle: const TextStyle(color: Color(0xFF757575)),
+          hintStyle: const TextStyle(color: Colors.white),
           fillColor: const Color(0xFF979797).withOpacity(0.5),
           contentPadding:
           const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -33,7 +33,10 @@ class SearchField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           hintText: "Search Character",
-          prefixIcon: const Icon(Icons.search),
+          prefixIcon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
         ),
       ),
     );

@@ -47,6 +47,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     children: CharacterFilter.values.map((CharacterFilter filter) {
                       return FilterChip(
                         label: Text(filter.name),
+                        labelStyle: const TextStyle(
+                          color: Colors.white
+                        ),
                         selected: controller.isActiveFilter(filter),
                         onSelected: (bool selected) {
                           setState(() {
