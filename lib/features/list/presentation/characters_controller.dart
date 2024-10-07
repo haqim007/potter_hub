@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:potter_hub/core/data/mechanism/resource.dart';
 import 'package:potter_hub/core/util/app_constant.dart';
 import 'package:potter_hub/features/list/domain/model/character_summary.dart';
+import 'package:potter_hub/features/list/domain/usecase/filter_character_usecase.dart';
 import 'package:potter_hub/features/list/domain/usecase/get_characters_usecase.dart';
 
 
@@ -24,6 +25,7 @@ extension CharacterFilterName on CharacterFilter {
 
 class CharactersController extends GetxController {
   final GetCharactersUseCase _getCharactersUseCase = Get.find();
+  final FilterCharacterUseCase _filterCharacterUseCase = Get.find();
   List<CharacterSummary> _charactersData = [];
   var characters = Rx<Resource<List<CharacterSummary>>>(Resource.loading());
   var filters = Rx<List<CharacterFilter>>([]);
@@ -85,15 +87,9 @@ class CharactersController extends GetxController {
   void _filterCharacters(List<CharacterFilter> filtersValue) {
     characters.value = Resource.loading();
     try {
-      if(filtersValue.isEmpty) {
-        characters.value = Resource.success(_charactersData);
-        return;
-      }
-      final filteredData = _charactersData.where((data) {
-        return data.hogwartsStaff == filtersValue.contains(CharacterFilter.staff) ||
-            data.hogwartsStudent == filtersValue.contains(CharacterFilter.student);
-      }).toList();
-      characters.value = Resource.success(filteredData);
+      characters.value = Resource.success(
+          _filterCharacterUseCase.invoke(_charactersData, filtersValue)
+      );
     } catch (e) {
       logger.e("_filterCharacters $e");
       characters.value = Resource.error(message: "Error filtering data: $e");

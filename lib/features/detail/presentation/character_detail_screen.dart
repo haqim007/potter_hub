@@ -118,7 +118,7 @@ class CharacterProfile extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         "Alternate Names: ${
-                            controller.character!.alternateNames.length == 0 ? "None" :
+                            controller.character!.alternateNames.isEmpty ? "None" :
                             controller.character!.alternateNames.join(", ")
                         }",
                         style: Theme.of(context).textTheme.bodyLarge,

@@ -10,6 +10,7 @@ import 'package:potter_hub/features/list/presentation/characters_screen.dart';
 import 'features/detail/presentation/character_detail_controller.dart';
 import 'features/detail/presentation/character_detail_screen.dart';
 import 'features/list/di/injection.dart';
+import 'features/list/domain/usecase/filter_character_usecase.dart';
 
 
 void main() {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           page: () => CharactersScreen(),
           binding: BindingsBuilder((){
             Get.lazyPut<GetCharactersUseCase>(() => GetCharactersUseCase());
+            Get.lazyPut<FilterCharacterUseCase>(() => FilterCharacterUseCase());
             Get.lazyPut<CharactersController>(() => CharactersController());
           })
         ),
