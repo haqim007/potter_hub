@@ -8,7 +8,6 @@ abstract class NetworkBoundResource<ResultType, ResponseType> {
   final Rx<Resource<ResultType>> _result = Rx(Resource.loading());
 
   NetworkBoundResource() {
-    logger.d("NetworkBoundResource");
     _fetchData();
   }
 
@@ -20,10 +19,6 @@ abstract class NetworkBoundResource<ResultType, ResponseType> {
 
       if (await onBeforeRequest()) {
         final apiResponse = await requestFromRemoteRunner();
-        logger.d(apiResponse.data.toString());
-        logger.d(apiResponse.error.toString());
-        logger.d("isSuccess ${apiResponse.isSuccess}");
-        logger.d("isFailure ${apiResponse.isFailure}");
         if (apiResponse.isSuccess) {
           final res = apiResponse.data;
           if (res != null) {
